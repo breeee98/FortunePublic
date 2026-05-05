@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>易经金钱卦起卦器</title>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        .slide-down { animation: slideDown 0.4s ease-out; }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800 min-h-screen p-4 md:p-8">
+
+<div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+
+    <!-- 左侧：教学指南 -->
+    <div class="w-full md:w-1/2 bg-stone-50 p-6 md:p-8 border-b md:border-b-0 md:border-r border-stone-200">
+        <h1 class="text-2xl font-bold mb-6 text-stone-900 border-b-2 border-red-800 pb-2 inline-block">三枚硬币起卦法</h1>
+        <div class="space-y-6 text-sm md:text-base text-stone-700">
+            <section>
+                <h2 class="text-lg font-semibold text-stone-900 mb-2 flex items-center gap-2">
+                    <span class="bg-red-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">1</span> 设定阴阳分值
+                </h2>
+                <p>拿起你的3枚硬币，提前做好规定：</p>
+                <ul class="list-disc list-inside mt-2 ml-2 space-y-1">
+                    <li><span class="font-bold text-red-700">字面</span>（带面值/文字）：为阳，记为 <span class="font-bold">3</span>。</li>
+                    <li><span class="font-bold text-stone-600">花面</span>（带图案/国徽）：为阴，记为 <span class="font-bold">2</span>。</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-lg font-semibold text-stone-900 mb-2 flex items-center gap-2">
+                    <span class="bg-red-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">2</span> 摇卦与记录 (抛6次)
+                </h2>
+                <p>将3枚硬币合扣于双手中，心中默念所问之事，摇晃后同时落下，将3枚硬币分值相加：</p>
+                <div class="mt-3 bg-white p-4 rounded-lg border border-stone-200 shadow-sm">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2"><span class="font-bold shrink-0">1字 2花：</span><span>3+2+2 = <b>7</b>（少阳，阳爻）</span></li>
+                        <li class="flex items-start gap-2"><span class="font-bold shrink-0">2字 1花：</span><span>3+3+2 = <b>8</b>（少阴，阴爻）</span></li>
+                        <li class="flex items-start gap-2 text-red-700"><span class="font-bold shrink-0">3个全字：</span><span>3+3+3 = <b>9</b>（老阳）* 动爻</span></li>
+                        <li class="flex items-start gap-2 text-red-700"><span class="font-bold shrink-0">3个全花：</span><span>2+2+2 = <b>6</b>（老阴）* 动爻</span></li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h2 class="text-lg font-semibold text-stone-900 mb-2 flex items-center gap-2">
+                    <span class="bg-red-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">3</span> 画卦规则
+                </h2>
+                <p class="font-medium text-red-800 bg-red-50 p-2 rounded">核心禁忌：必须从下往上画！</p>
+                <p class="mt-2 text-sm">第1次结果画最下（初爻），第6次画最上（上爻）。</p>
+            </section>
+            <section>
+                <h2 class="text-lg font-semibold text-stone-900 mb-2 flex items-center gap-2">
+                    <span class="bg-red-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">4</span> 使用 AI 解卦
+                </h2>
+                <p class="text-sm">起卦完成后，右侧会自动生成一段解卦 Prompt，可直接复制粘贴到 ChatGPT、Claude 等 AI 工具中获得解读。</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- 右侧：电子起卦器 -->
+    <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col bg-white gap-4">
+        <h2 class="text-xl font-bold text-center text-stone-800">电子排盘模拟器</h2>
+
+        <!-- 问题输入框 -->
+        <div>
+            <label class="block text-sm font-semibold text-stone-600 mb-1">📝 你想问什么？（选填，将自动写入 Prompt）</label>
+            <input id="question-input" type="text" placeholder="例：我近期的事业发展方向如何？"
+                class="w-full border border-stone-300 rounded-lg px-3 py-2 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-transparent placeholder-stone-400 transition">
+        </div>
+
+        <!-- 抛掷操作区 -->
+        <div class="flex flex-col items-center justify-center bg-stone-50 py-5 rounded-xl border border-stone-200">
+            <div id="coin-display" class="flex gap-4 h-16 items-center justify-center mb-4">
+                <div class="w-12 h-12 rounded-full border-2 border-stone-300 bg-stone-200 flex items-center justify-center text-stone-400 font-bold">?</div>
+                <div class="w-12 h-12 rounded-full border-2 border-stone-300 bg-stone-200 flex items-center justify-center text-stone-400 font-bold">?</div>
+                <div class="w-12 h-12 rounded-full border-2 border-stone-300 bg-stone-200 flex items-center justify-center text-stone-400 font-bold">?</div>
+            </div>
+            <div class="flex gap-3">
+                <button id="toss-btn" onclick="tossCoins()" class="bg-red-800 hover:bg-red-900 transition-colors text-white font-bold py-3 px-7 rounded-full shadow-lg active:scale-95">
+                    摇卦 (掷3枚硬币)
+                </button>
+                <button id="reset-btn" onclick="resetSimulator()" class="hidden bg-stone-200 hover:bg-stone-300 text-stone-700 font-bold py-3 px-5 rounded-full transition-colors active:scale-95">
+                    重新起卦
+                </button>
+            </div>
+            <p id="status-text" class="text-sm font-medium text-stone-500 mt-3">还需摇卦 6 次</p>
+        </div>
+
+        <!-- 卦象显示区 -->
+        <div class="border-2 border-stone-200 rounded-xl p-4 flex flex-col justify-end bg-white min-h-[200px]">
+            <div id="hexagram-empty" class="text-center text-stone-400 h-full flex items-center justify-center text-sm py-8">
+                卦象将自下而上在此生成...
+            </div>
+            <div id="hexagram-container" class="flex flex-col-reverse gap-3 w-full"></div>
+        </div>
+
+        <!-- Prompt 生成区（起卦完成后显示） -->
+        <div id="prompt-section" class="hidden slide-down">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-sm font-bold text-stone-700">🤖 解卦 Prompt（可直接复制给 AI）</h3>
+                <button onclick="copyPrompt()" id="copy-btn"
+                    class="flex items-center gap-1.5 bg-red-800 hover:bg-red-900 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <span id="copy-label">一键复制</span>
+                </button>
+            </div>
+            <div id="prompt-box"
+                class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-xs text-stone-700 leading-relaxed whitespace-pre-wrap font-mono max-h-52 overflow-y-auto">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let lines = [];
+    const tossBtn = document.getElementById('toss-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const hexagramContainer = document.getElementById('hexagram-container');
+    const hexagramEmpty = document.getElementById('hexagram-empty');
+    const coinDisplay = document.getElementById('coin-display');
+    const statusText = document.getElementById('status-text');
+    const promptSection = document.getElementById('prompt-section');
+    const promptBox = document.getElementById('prompt-box');
+
+    function tossCoins() {
+        if (lines.length >= 6) return;
+        hexagramEmpty.classList.add('hidden');
+
+        let sum = 0, coinHtml = '';
+        for (let i = 0; i < 3; i++) {
+            const isHeads = Math.random() >= 0.5;
+            const val = isHeads ? 3 : 2;
+            sum += val;
+            const bgClass = isHeads ? 'bg-amber-100 border-amber-500 text-amber-700' : 'bg-stone-200 border-stone-400 text-stone-600';
+            coinHtml += `<div class="w-12 h-12 rounded-full border-4 ${bgClass} flex items-center justify-center font-bold text-lg shadow-sm">${isHeads ? '字' : '花'}</div>`;
+        }
+        coinDisplay.innerHTML = coinHtml;
+
+        let lineType = '', lineSymbol = '', isYang = false, isMoving = false;
+        if (sum === 6)      { lineType = '老阴'; lineSymbol = 'X'; isYang = false; isMoving = true; }
+        else if (sum === 7) { lineType = '少阳'; lineSymbol = '';  isYang = true;  isMoving = false; }
+        else if (sum === 8) { lineType = '少阴'; lineSymbol = '';  isYang = false; isMoving = false; }
+        else if (sum === 9) { lineType = '老阳'; lineSymbol = 'O'; isYang = true;  isMoving = true; }
+
+        lines.push({ sum, lineType, lineSymbol, isYang, isMoving });
+        renderHexagram();
+
+        if (lines.length < 6) {
+            statusText.innerText = `还需摇卦 ${6 - lines.length} 次`;
+        } else {
+            statusText.innerText = '起卦完成！Prompt 已在下方生成 ✓';
+            tossBtn.disabled = true;
+            tossBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            tossBtn.innerText = '已完成';
+            resetBtn.classList.remove('hidden');
+            generatePrompt();
+            promptSection.classList.remove('hidden');
+        }
+    }
+
+    function renderHexagram() {
+        hexagramContainer.innerHTML = '';
+        const pos = ['初爻','二爻','三爻','四爻','五爻','上爻'];
+        lines.forEach((line, i) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'flex items-center w-full bg-stone-50 p-2 rounded fade-in';
+
+            const numSpan = document.createElement('span');
+            numSpan.className = 'w-12 text-sm text-stone-500 text-right pr-3 shrink-0';
+            numSpan.innerText = pos[i];
+
+            const shapeContainer = document.createElement('div');
+            shapeContainer.className = 'flex-1 flex justify-center gap-1 h-6 px-4';
+            shapeContainer.innerHTML = line.isYang
+                ? `<div class="w-full h-full bg-stone-800 rounded-sm"></div>`
+                : `<div class="w-[45%] h-full bg-stone-800 rounded-sm"></div><div class="w-[10%]"></div><div class="w-[45%] h-full bg-stone-800 rounded-sm"></div>`;
+
+            const infoSpan = document.createElement('span');
+            infoSpan.className = `w-20 text-sm font-bold flex items-center justify-start shrink-0 ${line.isMoving ? 'text-red-600' : 'text-stone-600'}`;
+            infoSpan.innerText = `${line.sum} ${line.lineType}`;
+            if (line.isMoving) {
+                const marker = document.createElement('span');
+                marker.className = 'ml-1 inline-block bg-red-100 text-red-800 w-5 h-5 text-xs rounded-full flex items-center justify-center';
+                marker.innerText = line.lineSymbol;
+                infoSpan.appendChild(marker);
+            }
+
+            lineDiv.appendChild(numSpan);
+            lineDiv.appendChild(shapeContainer);
+            lineDiv.appendChild(infoSpan);
+            hexagramContainer.appendChild(lineDiv);
+        });
+    }
+
+    function generatePrompt() {
+        const question = document.getElementById('question-input').value.trim() || '（未填写，请结合卦象综合解读）';
+        const posNames = ['初爻','二爻','三爻','四爻','五爻','上爻'];
+
+        // 变爻信息
+        const movingLines = lines
+            .map((l, i) => l.isMoving ? `${posNames[i]}（${l.lineType}，数字 ${l.sum}）` : null)
+            .filter(Boolean);
+
+        // 之卦：动爻取反
+        const changeLine = (l) => {
+            if (!l.isMoving) return l.isYang ? '阳爻（—）' : '阴爻（– –）';
+            return l.isYang ? '阴爻（– –）[由老阳变]' : '阳爻（—）[由老阴变]';
+        };
+
+        const linesDetail = lines.map((l, i) =>
+            `  ${posNames[i]}：数字 ${l.sum}（${l.lineType}）${l.isMoving ? ' ← 动爻' : ''}`
+        ).join('\n');
+
+        const changeLinesDetail = lines.map((l, i) =>
+            `  ${posNames[i]}：${changeLine(l)}`
+        ).join('\n');
+
+        const hasMoving = movingLines.length > 0;
+
+        const prompt =
+`你是一位精通《周易》的易学老师，请根据以下金钱卦卦象为我进行解读。
+
+【所问之事】
+${question}
+
+【起卦方式】
+三枚硬币金钱卦法（字面=3/阳，花面=2/阴）
+
+【本卦六爻（从下到上）】
+${linesDetail}
+
+【动爻】
+${hasMoving ? movingLines.join('、') : '无动爻（静卦，只看本卦）'}
+
+【之卦六爻（动爻变化后）】
+${hasMoving ? changeLinesDetail : '无（本卦无动爻，不起之卦）'}
+
+请按以下结构解读：
+1. 本卦：卦名、卦象含义及整体主题
+2. 动爻分析：${hasMoving ? '各动爻的爻辞含义与提示' : '（本卦无动爻，跳过此步）'}
+3. 之卦：${hasMoving ? '卦名与含义，代表事态走向' : '（本卦无动爻，跳过此步）'}
+4. 综合解读：结合所问之事，给出具体建议与提示
+5. 一句话总结`;
+
+        promptBox.innerText = prompt;
+    }
+
+    function copyPrompt() {
+        const text = promptBox.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const label = document.getElementById('copy-label');
+            label.innerText = '已复制 ✓';
+            setTimeout(() => label.innerText = '一键复制', 2000);
+        });
+    }
+
+    function resetSimulator() {
+        lines = [];
+        hexagramContainer.innerHTML = '';
+        hexagramEmpty.classList.remove('hidden');
+        promptSection.classList.add('hidden');
+        promptBox.innerText = '';
+        document.getElementById('copy-label').innerText = '一键复制';
+        coinDisplay.innerHTML = `
+            <div class="w-12 h-12 rounded-full border-2 border-stone-300 bg-stone-200 flex items-center justify-center text-stone-400 font-bold">?</div>
+            <div class="w-12 h-12 rounded-full border-2 border-stone-300 bg-stone-200 flex items-center justify-center text-stone-400 font-bold">?</div>
+            <div class="w-12 h-12 rounded-full border-2 border-stone-300 bg-stone-200 flex items-center justify-center text-stone-400 font-bold">?</div>`;
+        tossBtn.disabled = false;
+        tossBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        tossBtn.innerText = '摇卦 (掷3枚硬币)';
+        statusText.innerText = '还需摇卦 6 次';
+        resetBtn.classList.add('hidden');
+    }
+</script>
+</body>
+</html>
